@@ -16,10 +16,10 @@
   </button>
   
   <div class="dropdown-menu absolute right-0 mt-2 py-2 w-24 bg-white dark:bg-dark-700 rounded-md shadow-lg hidden">
-    <a href="#" class="block px-4 py-2 text-sm text-dark-800 dark:text-white hover:bg-dark-100 dark:hover:bg-dark-600 current">
+    <a href="#" data-lang="es" class="block px-4 py-2 text-sm text-dark-800 dark:text-white hover:bg-dark-100 dark:hover:bg-dark-600 current">
       Español
     </a>
-    <a href="#" class="block px-4 py-2 text-sm text-dark-800 dark:text-white hover:bg-dark-100 dark:hover:bg-dark-600 opacity-50 cursor-not-allowed">
+    <a href="#" data-lang="en" class="block px-4 py-2 text-sm text-dark-800 dark:text-white hover:bg-dark-100 dark:hover:bg-dark-600 ">
       English
     </a>
   </div>
@@ -40,7 +40,8 @@
     });
     
     document.addEventListener('click', (e) => {
-      if (!e.target.closest('.language-selector')) {
+      const target = e.target as Element;
+      if (!target.closest('.language-selector')) {
         dropdown?.classList.add('hidden');
         langSelector?.setAttribute('aria-expanded', 'false');
       }

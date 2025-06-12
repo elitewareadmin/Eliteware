@@ -1,4 +1,3 @@
-
 export const TeamMembers = [
   {
     name: "José Julián Calvo Lopesino",
@@ -39,9 +38,8 @@ export const TeamMembers = [
   {
     name: "Jarvis Huice",
     position: "Desarrolador full-stack",
-    bio: "Experta en experiencias inmersivas y metaverso con background en diseño UX y psicología cognitiva. Laura ha trabajado en el desarrollo de entornos virtuales para marcas globales y proyectos educativos.",
-    image:
-      "https://images.pexels.com/photos/1898555/pexels-photo-1898555.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    bio: "Experto en desarrollo de software con  background multidisciplinario en .NET, React, Flutter y Python. He realizado proyectos clave como el rediseño de sistemas administrativos, la creación de  ERP ,desarrollos de plataforma integrales. Su enfoque técnico se complementa con desarrollos escalables  y habilidad para integrar tecnologías emergentes en soluciones reales.",
+    image: "/jarvihuice.jpg",
     social: {
       linkedin: "#",
       twitter: "#",

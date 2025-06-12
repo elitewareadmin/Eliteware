@@ -1,4 +1,4 @@
-import { Value } from "../entity/Value";
+import type { Value } from "../entity/Value";
 
 export const Values: Value[] = [
   {

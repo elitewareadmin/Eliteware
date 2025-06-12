@@ -1,4 +1,4 @@
-import { Socials } from "../entity/Socials";
+import type { Socials } from "../entity/Socials";
 
 export interface TeamMember {
   name: string;

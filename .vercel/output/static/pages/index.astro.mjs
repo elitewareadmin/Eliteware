@@ -5,7 +5,7 @@ import { $ as $$Layout } from '../chunks/Layout_Clac3qTV.mjs';
 import { jsxs, jsx } from 'react/jsx-runtime';
 import { useRef, useEffect } from 'react';
 import * as THREE from 'three';
-import { gsap } from 'gsap';
+import * as gsap from 'gsap';
 import 'clsx';
 import { $ as $$ContactSection } from '../chunks/ContactSection_C0-73Ito.mjs';
 export { renderers } from '../renderers.mjs';
@@ -21,7 +21,12 @@ const HeroSection = () => {
     if (!canvasRef.current) return;
     const scene = new THREE.Scene();
     sceneRef.current = scene;
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1e3);
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1e3
+    );
     camera.position.z = 5;
     cameraRef.current = camera;
     const renderer = new THREE.WebGLRenderer({
@@ -46,8 +51,14 @@ const HeroSection = () => {
       positions[i3 + 2] = radius * Math.cos(phi);
       scales[i] = Math.random();
     }
-    particleGeometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-    particleGeometry.setAttribute("scale", new THREE.BufferAttribute(scales, 1));
+    particleGeometry.setAttribute(
+      "position",
+      new THREE.BufferAttribute(positions, 3)
+    );
+    particleGeometry.setAttribute(
+      "scale",
+      new THREE.BufferAttribute(scales, 1)
+    );
     const particleMaterial = new THREE.ShaderMaterial({
       uniforms: {
         color: { value: new THREE.Color(12790524) },
@@ -150,18 +161,28 @@ const HeroSection = () => {
     };
   }, []);
   useEffect(() => {
-    const tl = gsap.timeline({ defaults: { duration: 1, ease: "power3.out" } });
+    const tl = gsap.gsap.timeline({
+      defaults: { duration: 1, ease: "power3.out" }
+    });
     tl.from(".hero-title span", {
       y: 100,
       opacity: 0,
       stagger: 0.1
-    }).from(".hero-subtitle", {
-      y: 20,
-      opacity: 0
-    }, "-=0.6").from(".hero-cta", {
-      y: 20,
-      opacity: 0
-    }, "-=0.4");
+    }).from(
+      ".hero-subtitle",
+      {
+        y: 20,
+        opacity: 0
+      },
+      "-=0.6"
+    ).from(
+      ".hero-cta",
+      {
+        y: 20,
+        opacity: 0
+      },
+      "-=0.4"
+    );
     return () => {
       tl.kill();
     };
