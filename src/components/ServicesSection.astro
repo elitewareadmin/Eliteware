@@ -1,0 +1,162 @@
+---
+interface Service {
+  title: string;
+  description: string;
+  icon: string;
+  id: string;
+}
+
+const services: Service[] = [
+  {
+    title: "Inteligencia Artificial",
+    description: "Soluciones personalizadas de IA que transforman datos en insights accionables y automatizaciones inteligentes para optimizar procesos y toma de decisiones.",
+    icon: "brain",
+    id: "ia"
+  },
+  {
+    title: "Metaverso",
+    description: "Creamos experiencias inmersivas y entornos virtuales interactivos que conectan marcas con audiencias de formas nunca antes imaginadas.",
+    icon: "vr",
+    id: "metaverso"
+  },
+  {
+    title: "Software Disruptivo",
+    description: "Desarrollamos aplicaciones innovadoras que rompen con lo establecido, utilizando las últimas tecnologías y arquitecturas para ofrecer ventajas competitivas reales.",
+    icon: "code",
+    id: "software"
+  },
+  {
+    title: "Consultoría Tecnológica",
+    description: "Asesoramiento estratégico y hojas de ruta tecnológicas para guiar tu transformación digital con claridad y precisión hacia objetivos tangibles.",
+    icon: "consultoria",
+    id: "consultoria"
+  }
+];
+
+const getIcon = (icon: string) => {
+  const icons = {
+    brain: `<svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9.5 2a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z"/>
+      <path d="M14.5 4a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Z"/>
+      <path d="M3 15.5a7 7 0 0 1 7-7"/>
+      <path d="M14 8.5a7 7 0 0 1 7 7"/>
+      <path d="M9 15a1 1 0 0 0-1 1"/>
+      <path d="M8 8a2 2 0 0 0-2 2"/>
+      <path d="M18 11.5a3.5 3.5 0 0 0-3.5-3.5"/>
+      <path d="M18.5 15.5a1 1 0 0 0-1-1"/>
+      <path d="M17 17a2 2 0 0 0-2 2"/>
+      <path d="M7 17.5a2.5 2.5 0 0 0 2.5 2.5"/>
+      <path d="M12 16.5a2.5 2.5 0 0 0 2.5 2.5"/>
+      <path d="M8 12.5a2.5 2.5 0 0 0 2.5 2.5"/>
+      <path d="M13.5 15a2.5 2.5 0 0 0 2.5-2.5"/>
+    </svg>`,
+    vr: `<svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M2 12.5C2 10 4 8.5 7 8.5c3 0 5 1.5 5 4s-2 4-5 4-5-1.5-5-4z"/>
+      <path d="M17 15.5c3 0 5-1.5 5-4s-2-4-5-4-5 1.5-5 4 2 4 5 4z"/>
+      <path d="M19.5 8.5h-15"/>
+      <path d="M19.5 15.5h-15"/>
+    </svg>`,
+    code: `<svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="16 18 22 12 16 6"/>
+      <polyline points="8 6 2 12 8 18"/>
+    </svg>`,
+    consultoria: `<svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 3v18h18"/>
+      <path d="M18 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+      <path d="M6 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+      <path d="M18 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+      <path d="M8.59 13.51l6.83 3.98"/>
+      <path d="M15.41 6.51l-6.82 3.98"/>
+    </svg>`
+  };
+  
+  return icons[icon] || icons.brain;
+};
+---
+
+<section class="py-20 md:py-32 bg-white dark:bg-dark-900" id="servicios">
+  <div class="container mx-auto px-4 md:px-8">
+    <!-- Section Header -->
+    <div class="text-center mb-16 md:mb-24 max-w-3xl mx-auto">
+      <h2 class="font-display text-3xl md:text-5xl font-bold mb-6 relative inline-block">
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-accent-500">
+          Nuestros Servicios
+        </span>
+      </h2>
+      <p class="text-lg text-dark-500 dark:text-dark-200">
+        Tecnologías avanzadas y soluciones innovadoras para transformar tu negocio 
+        y prepararlo para los retos del futuro digital.
+      </p>
+    </div>
+    
+    <!-- Services Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {services.map((service, index) => (
+        <div 
+          id={service.id}
+          class="service-card group relative bg-white dark:bg-dark-800 rounded-xl p-8 shadow-lg dark:shadow-accent-500/5 hover:shadow-xl dark:hover:shadow-accent-500/10 transition-all duration-500 overflow-hidden"
+          data-index={index}
+        >
+          <!-- Service Icon -->
+          <div class="icon-container mb-6 text-accent-500 relative z-10">
+            <Fragment set:html={getIcon(service.icon)} />
+          </div>
+          
+          <!-- Content -->
+          <h3 class="text-xl font-display font-bold mb-4 relative z-10">
+            {service.title}
+          </h3>
+          <p class="text-dark-500 dark:text-dark-200 mb-6 relative z-10">
+            {service.description}
+          </p>
+          
+          <!-- "Learn more" link -->
+          <a 
+            href={`/servicios#${service.id}`}
+            class="inline-flex items-center text-primary-500 font-medium relative z-10 group-hover:text-primary-400 transition-colors"
+          >
+            Saber más
+            <svg 
+              class="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-transform"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+          
+          <!-- Background decoration -->
+          <div class="absolute -bottom-12 -right-12 w-40 h-40 bg-primary-500/5 rounded-full transition-transform duration-500 group-hover:scale-150"></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  
+  document.addEventListener('astro:page-load', () => {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Animate service cards on scroll
+    const serviceCards = document.querySelectorAll('.service-card');
+    
+    serviceCards.forEach((card, index) => {
+      gsap.from(card, {
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        delay: index * 0.1,
+        scrollTrigger: {
+          trigger: card,
+          start: 'top bottom-=100',
+          end: 'bottom center',
+          toggleActions: 'play none none none'
+        }
+      });
+    });
+  });
+</script>

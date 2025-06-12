@@ -1,0 +1,137 @@
+---
+interface Project {
+  title: string;
+  category: string;
+  image: string;
+  description: string;
+  url: string;
+}
+
+const projects: Project[] = [
+  {
+    title: "Nexus AI Platform",
+    category: "Inteligencia Artificial",
+    image: "https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    description: "Plataforma de análisis predictivo que utiliza machine learning para anticipar tendencias de mercado con precisión del 94%.",
+    url: "/portfolio/nexus-ai-platform"
+  },
+  {
+    title: "VirtualX Showroom",
+    category: "Metaverso",
+    image: "https://images.pexels.com/photos/6102161/pexels-photo-6102161.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    description: "Experiencia inmersiva de compra en realidad virtual para marcas de lujo con interacciones realistas y análisis de comportamiento.",
+    url: "/portfolio/virtualx-showroom"
+  },
+  {
+    title: "Quantum Analytics Suite",
+    category: "Software Disruptivo",
+    image: "https://images.pexels.com/photos/5926370/pexels-photo-5926370.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    description: "Suite de análisis de datos empresariales que procesa petabytes de información en tiempo real para la toma de decisiones.",
+    url: "/portfolio/quantum-analytics-suite"
+  }
+];
+---
+
+<section class="py-20 md:py-32 bg-gradient-to-b from-dark-900 to-dark-800">
+  <div class="container mx-auto px-4 md:px-8">
+    <!-- Section Header -->
+    <div class="text-center mb-16 md:mb-24 max-w-3xl mx-auto">
+      <h2 class="font-display text-3xl md:text-5xl font-bold mb-6 text-white">
+        Proyectos Destacados
+      </h2>
+      <p class="text-lg text-dark-200">
+        Descubre cómo hemos ayudado a empresas líderes a transformar sus negocios
+        con soluciones tecnológicas de vanguardia.
+      </p>
+    </div>
+    
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {projects.map((project, index) => (
+        <div class="project-card group" data-index={index}>
+          <a href={`/portfolio#${project.title.toLowerCase().replace(/\s+/g, '-')}`} class="block h-full">
+            <div class="relative overflow-hidden rounded-xl bg-dark-700 h-full flex flex-col">
+              <!-- Project Image -->
+              <div class="relative h-64 overflow-hidden">
+                <img 
+                  src={project.image} 
+                  alt={project.title} 
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                
+                <!-- Overlay -->
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-900/90 via-dark-900/40 to-transparent opacity-80"></div>
+                
+                <!-- Category Badge -->
+                <div class="absolute top-4 left-4 bg-accent-500 text-white text-xs py-1 px-3 rounded-full">
+                  {project.category}
+                </div>
+              </div>
+              
+              <!-- Content -->
+              <div class="p-6 flex-1 flex flex-col">
+                <h3 class="text-xl font-display font-bold mb-3 text-white">
+                  {project.title}
+                </h3>
+                <p class="text-dark-200 mb-6 flex-1">
+                  {project.description}
+                </p>
+                
+                <!-- "View Project" link -->
+                <div class="inline-flex items-center text-accent-400 font-medium group-hover:text-accent-300 transition-colors">
+                  Ver Proyecto
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    class="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-transform" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      ))}
+    </div>
+    
+    <!-- "View All" button -->
+    <div class="text-center mt-16">
+      <a 
+        href="/portfolio" 
+        class="inline-flex items-center justify-center px-8 py-3 border-2 border-accent-500 text-accent-500 font-medium rounded-md hover:bg-accent-500 hover:text-white transition-all duration-300"
+      >
+        Ver todos los proyectos
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  
+  document.addEventListener('astro:page-load', () => {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Animate project cards on scroll
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    projectCards.forEach((card, index) => {
+      gsap.from(card, {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        delay: index * 0.2,
+        scrollTrigger: {
+          trigger: card,
+          start: 'top bottom-=100',
+          end: 'bottom center',
+          toggleActions: 'play none none none'
+        }
+      });
+    });
+  });
+</script>

@@ -1,0 +1,130 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import LanguageSelector from './LanguageSelector.astro';
+---
+
+<header class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="site-header">
+  <div class="container mx-auto px-4 md:px-8 py-4 md:py-6 flex items-center justify-between">
+    <a href="/" class="logo flex items-center space-x-2 group">
+      <div class="w-8 h-8 bg-accent-500 rounded-sm flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:rounded-full">
+        <span class="text-white font-display text-lg font-bold">E</span>
+      </div>
+      <span class="font-display text-xl font-bold tracking-tight">
+        Elite<span class="text-accent-500">Ware</span>
+      </span>
+    </a>
+    
+    <nav class="hidden md:flex items-center space-x-8">
+      <a href="/" class="nav-link">Inicio</a>
+      <a href="/servicios" class="nav-link">Servicios</a>
+      <a href="/portfolio" class="nav-link">Portfolio</a>
+      <a href="/nosotros" class="nav-link">Nosotros</a>
+      <a href="/contacto" class="nav-link">Contacto</a>
+    </nav>
+    
+    <div class="flex items-center space-x-4">
+      <ThemeToggle />
+      <LanguageSelector />
+      <button 
+        class="menu-toggle md:hidden w-10 h-10 flex flex-col items-center justify-center space-y-1.5"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <span class="block w-5 h-0.5 bg-dark-800 dark:bg-white transition-all"></span>
+        <span class="block w-5 h-0.5 bg-dark-800 dark:bg-white transition-all"></span>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Mobile menu -->
+  <div class="mobile-menu fixed inset-0 bg-dark-800 bg-opacity-95 flex flex-col items-center justify-center z-50 transform translate-x-full transition-transform duration-500 ease-in-out">
+    <button class="close-menu absolute top-6 right-6 w-10 h-10 flex items-center justify-center" aria-label="Close menu">
+      <span class="block w-6 h-0.5 bg-white transform rotate-45 absolute"></span>
+      <span class="block w-6 h-0.5 bg-white transform -rotate-45 absolute"></span>
+    </button>
+    
+    <nav class="flex flex-col items-center space-y-6 text-2xl font-display">
+      <a href="/" class="text-white hover:text-accent-500 transition-colors py-2">Inicio</a>
+      <a href="/servicios" class="text-white hover:text-accent-500 transition-colors py-2">Servicios</a>
+      <a href="/portfolio" class="text-white hover:text-accent-500 transition-colors py-2">Portfolio</a>
+      <a href="/nosotros" class="text-white hover:text-accent-500 transition-colors py-2">Nosotros</a>
+      <a href="/contacto" class="text-white hover:text-accent-500 transition-colors py-2">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const header = document.getElementById('site-header');
+    const menuToggle = document.querySelector('.menu-toggle');
+    const closeMenu = document.querySelector('.close-menu');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    
+    // Header scroll behavior
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        header?.classList.add('bg-white/80', 'dark:bg-dark-800/80', 'backdrop-blur-md', 'shadow-md');
+      } else {
+        header?.classList.remove('bg-white/80', 'dark:bg-dark-800/80', 'backdrop-blur-md', 'shadow-md');
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    
+    // Mobile menu toggle
+    menuToggle?.addEventListener('click', () => {
+      mobileMenu?.classList.remove('translate-x-full');
+      document.body.classList.add('overflow-hidden');
+    });
+    
+    closeMenu?.addEventListener('click', () => {
+      mobileMenu?.classList.add('translate-x-full');
+      document.body.classList.remove('overflow-hidden');
+    });
+    
+    // Add active state to current page link
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href === currentPath || (href !== '/' && currentPath.startsWith(href!))) {
+        link.classList.add('text-accent-500');
+      }
+    });
+    
+    // Initial header state
+    handleScroll();
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  });
+</script>
+
+<style>
+  .nav-link {
+    position: relative;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: theme('colors.accent.500');
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: theme('colors.accent.500');
+    transition: width 0.3s ease;
+  }
+  
+  .nav-link:hover::after {
+    width: 100%;
+  }
+</style>

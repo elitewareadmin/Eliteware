@@ -1,0 +1,296 @@
+---
+import Button from "../components/Button.astro";
+import Layout from "../layouts/Layout.astro";
+import { TeamMembers } from "../data/TeamMembers";
+import { Values } from "../data/value.ts";
+import  {getIcon}  from "../utils/GetIcon";
+---
+
+<Layout title="Nosotros - Elite Ware">
+  <!-- Page Header -->
+  <section class="pt-32 pb-20 bg-gradient-to-b from-dark-900 to-dark-800">
+    <div class="container mx-auto px-4 md:px-8">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="font-display text-4xl md:text-6xl font-bold text-white mb-6">
+          Nosotros
+        </h1>
+        <p class="text-lg text-dark-200 mb-10">
+          Conoce quiénes somos, nuestra misión y los valores que guían nuestro
+          trabajo diario.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section class="py-20 bg-white dark:bg-dark-800">
+    <div class="container mx-auto px-4 md:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Content -->
+        <div>
+          <h2 class="font-display text-3xl md:text-4xl font-bold mb-6">
+            Nuestra Historia
+          </h2>
+
+          <div class="space-y-4 text-dark-500 dark:text-dark-200">
+            <p>
+              Elite Ware nació en 2018 con una visión clara: convertirse en un
+              referente en la aplicación de tecnologías emergentes para
+              transformar negocios y crear experiencias digitales
+              extraordinarias.
+            </p>
+            <p>
+              Fundada por un equipo de expertos en tecnología con amplia
+              experiencia en empresas líderes del sector, Elite Ware ha crecido
+              rápidamente hasta consolidarse como una consultora tecnológica de
+              vanguardia especializada en inteligencia artificial, metaverso y
+              desarrollo de software disruptivo.
+            </p>
+            <p>
+              Hoy, nuestro equipo multidisciplinar trabaja con clientes de
+              diversos sectores, desde startups innovadoras hasta grandes
+              corporaciones, ayudándoles a navegar el complejo paisaje
+              tecnológico actual y a implementar soluciones que les permitan
+              destacar en la era digital.
+            </p>
+          </div>
+
+          <div class="mt-8">
+            <Button href="/contacto" variant="primary">
+              Trabaja con nosotros
+            </Button>
+          </div>
+        </div>
+
+        <!-- Image -->
+        <div class="relative rounded-xl overflow-hidden shadow-xl">
+          <img
+            src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="Equipo de Elite Ware"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Vision -->
+  <section
+    class="py-20 bg-gradient-to-r from-primary-600 to-accent-600 text-white"
+  >
+    <div class="container mx-auto px-4 md:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <!-- Mission -->
+        <div class="bg-white/10 backdrop-blur-md p-8 rounded-xl">
+          <h3 class="font-display text-2xl font-bold mb-4">Nuestra Misión</h3>
+          <p class="text-lg">
+            Potenciar el éxito de nuestros clientes a través de soluciones
+            tecnológicas innovadoras que transformen sus negocios, mejoren sus
+            operaciones y les permitan crear experiencias digitales
+            excepcionales para sus usuarios.
+          </p>
+        </div>
+
+        <!-- Vision -->
+        <div class="bg-white/10 backdrop-blur-md p-8 rounded-xl">
+          <h3 class="font-display text-2xl font-bold mb-4">Nuestra Visión</h3>
+          <p class="text-lg">
+            Ser reconocidos globalmente como líderes en la aplicación de
+            tecnologías emergentes para resolver desafíos empresariales
+            complejos y crear un futuro digital más inteligente, conectado y
+            centrado en las personas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Values -->
+  <section class="py-20 bg-gray-50 dark:bg-dark-700">
+    <div class="container mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-3xl md:text-4xl font-bold mb-6">
+          Nuestros Valores
+        </h2>
+        <p class="text-lg text-dark-500 dark:text-dark-200 max-w-3xl mx-auto">
+          Estos principios fundamentales guían todas nuestras decisiones y
+          acciones, definiendo quiénes somos como empresa y cómo trabajamos.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {
+          Values.map((value) => (
+            <div class="bg-white dark:bg-dark-800 p-8 rounded-xl shadow-lg dark:shadow-accent-500/5">
+              <div class="text-primary-500 mb-4" set:html={getIcon(value.icon)}/>
+
+              <h3 class="font-display text-xl font-bold mb-3">{value.title}</h3>
+              <p class="text-dark-500 dark:text-dark-300">
+                {value.description}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="py-20 bg-white dark:bg-dark-800">
+    <div class="container mx-auto px-4 md:px-8">
+      <div class="text-center mb-16">
+        <h2 class="font-display text-3xl md:text-4xl font-bold mb-6">
+          Nuestro Equipo
+        </h2>
+        <p class="text-lg text-dark-500 dark:text-dark-200 max-w-3xl mx-auto">
+          Contamos con un equipo multidisciplinar de expertos apasionados por la
+          tecnología y la innovación.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {
+          TeamMembers.map((member) => (
+            <div class="team-member group relative">
+              {/* Image Container */}
+              <div
+                class="relative mb-6 overflow-hidden rounded-xl"
+                style="aspect-ratio: 3/4;"
+              >
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                {/* Overlay */}
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/40 to-transparent opacity-50 group-hover:opacity-70 transition-opacity" />
+
+                {/* Social Links */}
+                <div class="absolute bottom-4 left-0 right-0 flex justify-center space-x-3 opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-4 group-hover:translate-y-0">
+                  {member.social.linkedin && (
+                    <a
+                      href={member.social.linkedin}
+                      class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-dark-800 hover:bg-primary-500 hover:text-white transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`LinkedIn de ${member.name}`}
+                    >
+                      {/* SVG de LinkedIn */}
+                    </a>
+                  )}
+                  {member.social.twitter && (
+                    <a
+                      href={member.social.twitter}
+                      class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-dark-800 hover:bg-primary-500 hover:text-white transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Twitter de ${member.name}`}
+                    >
+                      {/* SVG de Twitter */}
+                    </a>
+                  )}
+                  {member.social.github && (
+                    <a
+                      href={member.social.github}
+                      class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-dark-800 hover:bg-primary-500 hover:text-white transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`GitHub de ${member.name}`}
+                    >
+                      {/* SVG de GitHub */}
+                    </a>
+                  )}
+                </div>
+              </div>
+              <!-- Content -->
+            <h3 class="font-display text-xl font-bold mb-1">{member.name}</h3>
+            <p class="text-primary-500 font-medium mb-3">{member.position}</p>
+            <p class="text-dark-500 dark:text-dark-300 text-sm">{member.bio}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- CTA Section -->
+      <section class="py-20 bg-dark-900 text-white">
+        <div class="container mx-auto px-4 md:px-8 text-center">
+          <h2 class="font-display text-3xl md:text-4xl font-bold mb-6">
+            ¿Quieres unirte a nuestro equipo?
+          </h2>
+          <p class="text-xl text-dark-200 max-w-2xl mx-auto mb-10">
+            Estamos en constante búsqueda de talento apasionado por la
+            tecnología y la innovación. Explora nuestras oportunidades
+            profesionales.
+          </p>
+          <Button href="/contacto" variant="primary" size="lg">
+            Ver oportunidades
+          </Button>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      import { gsap } from "gsap";
+      import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+      document.addEventListener("astro:page-load", () => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate team members
+        const teamMembers = document.querySelectorAll(".team-member");
+
+        teamMembers.forEach((member, index) => {
+          gsap.from(member, {
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            delay: index * 0.1,
+            scrollTrigger: {
+              trigger: member,
+              start: "top bottom-=100",
+              end: "bottom center",
+              toggleActions: "play none none none",
+            },
+          });
+        });
+
+        // Animate values
+        const values = document.querySelectorAll(
+          ".bg-white.dark\\:bg-dark-800.p-8"
+        );
+
+        values.forEach((value, index) => {
+          gsap.from(value, {
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            delay: index * 0.1,
+            scrollTrigger: {
+              trigger: value,
+              start: "top bottom-=100",
+              end: "bottom center",
+              toggleActions: "play none none none",
+            },
+          });
+        });
+      });
+    </script>
+
+    <style>
+      .aspect-w-3 {
+        position: relative;
+        padding-bottom: 133.33%;
+      }
+
+      .aspect-w-3 > * {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
+    </style>
+  </section></Layout
+>

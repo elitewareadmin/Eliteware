@@ -1,0 +1,371 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+
+interface Project {
+  id: string;
+  title: string;
+  client: string;
+  category: string;
+  tags: string[];
+  description: string;
+  challenge: string;
+  solution: string;
+  results: string[];
+  image: string;
+  featured: boolean;
+}
+
+const projects: Project[] = [
+  {
+    id: "quantum-ai",
+    title: "Quantum AI Platform",
+    client: "QuantumTech Solutions",
+    category: "Inteligencia Artificial Cuántica",
+    tags: ["Computación Cuántica", "Machine Learning", "Optimización"],
+    description: "Plataforma revolucionaria que combina computación cuántica con IA para resolver problemas complejos de optimización y simulación molecular.",
+    challenge: "QuantumTech necesitaba una solución que aprovechara el poder de la computación cuántica para resolver problemas de optimización complejos que los sistemas clásicos no podían manejar eficientemente.",
+    solution: "Desarrollamos una plataforma híbrida que combina algoritmos cuánticos con IA clásica, permitiendo resolver problemas de optimización complejos y realizar simulaciones moleculares avanzadas.",
+    results: [
+      "Reducción del 95% en tiempo de procesamiento para problemas de optimización complejos",
+      "Precisión mejorada en un 75% para simulaciones moleculares",
+      "Capacidad de procesar problemas 100x más grandes que los sistemas tradicionales"
+    ],
+    image: "https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg",
+    featured: true
+  },
+  {
+    id: "ruby-enterprise",
+    title: "Ruby Enterprise Solutions",
+    client: "Global Finance Corp",
+    category: "Desarrollo Ruby",
+    tags: ["Ruby on Rails", "Microservicios", "API"],
+    description: "Sistema empresarial escalable construido con Ruby on Rails, implementando una arquitectura de microservicios moderna y APIs robustas.",
+    challenge: "Global Finance necesitaba modernizar su infraestructura legacy y crear un sistema modular que pudiera escalar con su crecimiento internacional.",
+    solution: "Implementamos una arquitectura de microservicios en Ruby, con APIs RESTful y GraphQL, integración continua y despliegue automatizado.",
+    results: [
+      "Reducción del 60% en tiempo de desarrollo de nuevas características",
+      "Escalabilidad mejorada soportando 10x más usuarios concurrentes",
+      "99.99% de uptime desde el despliegue"
+    ],
+    image: "https://images.pexels.com/photos/6102161/pexels-photo-6102161.jpeg",
+    featured: true
+  },
+  {
+    id: "blockchain-platform",
+    title: "Enterprise Blockchain Platform",
+    client: "LogisticChain International",
+    category: "Tecnología Blockchain",
+    tags: ["Smart Contracts", "Supply Chain", "Trazabilidad"],
+    description: "Plataforma blockchain empresarial para trazabilidad en cadena de suministro y automatización de contratos.",
+    challenge: "LogisticChain necesitaba una solución para garantizar la trazabilidad y transparencia en su cadena de suministro internacional.",
+    solution: "Desarrollamos una plataforma blockchain privada con smart contracts personalizados para automatizar procesos y garantizar trazabilidad.",
+    results: [
+      "100% de trazabilidad en tiempo real de productos",
+      "Reducción del 40% en disputas de contratos",
+      "Ahorro anual de €2M en costos operativos"
+    ],
+    image: "https://images.pexels.com/photos/8370752/pexels-photo-8370752.jpeg",
+    featured: true
+  },
+  {
+    id: "digital-transformation",
+    title: "Digital Transformation Program",
+    client: "Industrial Solutions Corp",
+    category: "Consultoría Estratégica",
+    tags: ["Transformación Digital", "Industria 4.0", "Automatización"],
+    description: "Programa integral de transformación digital para modernizar procesos industriales y adoptar tecnologías de Industria 4.0.",
+    challenge: "Industrial Solutions necesitaba modernizar sus operaciones y adoptar tecnologías digitales para mantener su competitividad.",
+    solution: "Implementamos un programa de transformación digital que incluyó automatización de procesos, IoT industrial y analytics avanzado.",
+    results: [
+      "Eficiencia operativa mejorada en un 45%",
+      "Reducción del 30% en costos de mantenimiento",
+      "ROI del 300% en el primer año"
+    ],
+    image: "https://images.pexels.com/photos/5926370/pexels-photo-5926370.jpeg",
+    featured: false
+  },
+  {
+    id: "cloud-native",
+    title: "Cloud Native Platform",
+    client: "TechScale Solutions",
+    category: "Desarrollo Cloud",
+    tags: ["Kubernetes", "Microservicios", "DevOps"],
+    description: "Plataforma nativa en la nube construida con Kubernetes y microservicios para máxima escalabilidad y resiliencia.",
+    challenge: "TechScale necesitaba una plataforma que pudiera escalar automáticamente y manejar millones de transacciones diarias.",
+    solution: "Desarrollamos una plataforma cloud-native con Kubernetes, implementando CI/CD y prácticas DevOps avanzadas.",
+    results: [
+      "Escalabilidad automática hasta 1M usuarios concurrentes",
+      "Tiempo de despliegue reducido de días a minutos",
+      "99.999% de disponibilidad"
+    ],
+    image: "https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg",
+    featured: false
+  },
+  {
+    id: "iot-platform",
+    title: "Industrial IoT Platform",
+    client: "Smart Manufacturing Co",
+    category: "IoT",
+    tags: ["Edge Computing", "Industria 4.0", "Analytics"],
+    description: "Plataforma IoT industrial con procesamiento en el edge y analytics avanzado para optimización de producción.",
+    challenge: "Smart Manufacturing necesitaba optimizar su producción mediante análisis en tiempo real de datos de sensores.",
+    solution: "Implementamos una plataforma IoT con procesamiento en el edge y analytics avanzado para optimización en tiempo real.",
+    results: [
+      "Eficiencia de producción mejorada en un 35%",
+      "Reducción del 25% en consumo energético",
+      "Predicción de mantenimiento con 95% de precisión"
+    ],
+    image: "https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg",
+    featured: false
+  }
+];
+
+// Categories for filter
+const categories = [...new Set(projects.map(project => project.category))];
+---
+
+<Layout title="Portfolio - Elite Ware">
+  <!-- Page Header -->
+  <section class="pt-32 pb-20 bg-gradient-to-b from-dark-900 to-dark-800">
+    <div class="container mx-auto px-4 md:px-8">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="font-display text-4xl md:text-6xl font-bold text-white mb-6">
+          Nuestro Portfolio
+        </h1>
+        <p class="text-lg text-dark-200 mb-10">
+          Descubre cómo hemos ayudado a empresas líderes a transformar sus negocios con soluciones tecnológicas de vanguardia.
+        </p>
+        
+        <!-- Filters -->
+        <div class="flex flex-wrap justify-center gap-4 mb-4" id="portfolio-filters">
+          <button 
+            class="filter-btn active bg-dark-700 hover:bg-dark-600 text-white px-5 py-2 rounded-full transition-all duration-300" 
+            data-filter="all"
+          >
+            Todos
+          </button>
+          
+          {categories.map(category => (
+            <button 
+              class="filter-btn bg-dark-700 hover:bg-dark-600 text-white px-5 py-2 rounded-full transition-all duration-300" 
+              data-filter={category.toLowerCase().replace(/\s+/g, '-')}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Portfolio Grid -->
+  <section class="py-20 bg-white dark:bg-dark-800">
+    <div class="container mx-auto px-4 md:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8" id="portfolio-grid">
+        {projects.map(project => (
+          <div 
+            class={`portfolio-item group ${project.category.toLowerCase().replace(/\s+/g, '-')}`} 
+            data-category={project.category.toLowerCase().replace(/\s+/g, '-')}
+          >
+            <div class="bg-dark-700 rounded-xl overflow-hidden h-full">
+              <!-- Project Image -->
+              <div class="relative h-64 overflow-hidden">
+                <img 
+                  src={project.image} 
+                  alt={project.title} 
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                
+                <!-- Overlay -->
+                <div class="absolute inset-0 bg-gradient-to-t from-dark-900/90 via-dark-900/40 to-transparent opacity-80"></div>
+                
+                <!-- Category Badge -->
+                <div class="absolute top-4 left-4 bg-accent-500 text-white text-xs py-1 px-3 rounded-full">
+                  {project.category}
+                </div>
+                
+                <!-- Client Badge -->
+                <div class="absolute top-4 right-4 bg-white/10 backdrop-blur-sm text-white text-xs py-1 px-3 rounded-full">
+                  {project.client}
+                </div>
+              </div>
+              
+              <!-- Content -->
+              <div class="p-6">
+                <h3 class="text-2xl font-display font-bold mb-3 text-white">
+                  {project.title}
+                </h3>
+                
+                <p class="text-dark-200 mb-6">
+                  {project.description}
+                </p>
+                
+                <!-- Challenge -->
+                <div class="mb-6">
+                  <h4 class="text-lg font-semibold text-white mb-2">El Desafío</h4>
+                  <p class="text-dark-200">{project.challenge}</p>
+                </div>
+                
+                <!-- Solution -->
+                <div class="mb-6">
+                  <h4 class="text-lg font-semibold text-white mb-2">Nuestra Solución</h4>
+                  <p class="text-dark-200">{project.solution}</p>
+                </div>
+                
+                <!-- Results -->
+                <div class="mb-6">
+                  <h4 class="text-lg font-semibold text-white mb-2">Resultados</h4>
+                  <ul class="space-y-2">
+                    {project.results.map(result => (
+                      <li class="flex items-start text-dark-200">
+                        <svg 
+                          class="h-6 w-6 text-accent-500 mr-2 flex-shrink-0"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path 
+                            strokeLinecap="round" 
+                            strokeLinejoin="round" 
+                            strokeWidth={2} 
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                        <span>{result}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <!-- Tags -->
+                <div class="flex flex-wrap gap-2 mb-6">
+                  {project.tags.map(tag => (
+                    <span class="text-xs bg-dark-600 text-dark-200 px-2 py-1 rounded">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                
+                <!-- CTA -->
+                <div class="flex justify-end">
+                  <Button
+                    href={`/portfolio/${project.id}`}
+                    variant="primary"
+                    size="sm"
+                  >
+                    Ver Detalles
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-r from-primary-600 to-accent-600 text-white">
+    <div class="container mx-auto px-4 md:px-8 text-center">
+      <h2 class="font-display text-3xl md:text-4xl font-bold mb-6">
+        ¿Listo para tu próximo proyecto?
+      </h2>
+      <p class="text-xl opacity-90 max-w-2xl mx-auto mb-10">
+        Trabajemos juntos para convertir tus ideas en soluciones tecnológicas innovadoras que transformen tu negocio.
+      </p>
+      <Button href="/contacto" variant="secondary" size="lg">
+        Hablemos de tu proyecto
+      </Button>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  
+  document.addEventListener('astro:page-load', () => {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Portfolio filtering
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+    
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Update active state
+        filterButtons.forEach(btn => btn.classList.remove('active', 'bg-accent-500', 'hover:bg-accent-600'));
+        button.classList.add('active', 'bg-accent-500', 'hover:bg-accent-600');
+        
+        const filter = button.getAttribute('data-filter');
+        
+        if (filter === 'all') {
+          // Show all items
+          portfolioItems.forEach(item => {
+            gsap.to(item, { 
+              opacity: 1, 
+              scale: 1, 
+              duration: 0.4,
+              ease: 'power1.inOut',
+              clearProps: 'all'
+            });
+            item.style.display = 'block';
+          });
+        } else {
+          // Filter items
+          portfolioItems.forEach(item => {
+            const category = item.getAttribute('data-category');
+            
+            if (category === filter) {
+              gsap.to(item, { 
+                opacity: 1, 
+                scale: 1, 
+                duration: 0.4,
+                ease: 'power1.inOut',
+                clearProps: 'all'
+              });
+              item.style.display = 'block';
+            } else {
+              gsap.to(item, { 
+                opacity: 0, 
+                scale: 0.95, 
+                duration: 0.4,
+                ease: 'power1.inOut',
+                onComplete: () => {
+                  item.style.display = 'none';
+                }
+              });
+            }
+          });
+        }
+      });
+    });
+    
+    // Initial animation for portfolio items
+    portfolioItems.forEach((item, index) => {
+      gsap.from(item, {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        delay: index * 0.1,
+        scrollTrigger: {
+          trigger: item,
+          start: 'top bottom-=100',
+          end: 'bottom center',
+          toggleActions: 'play none none none'
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .filter-btn.active {
+    background-color: theme('colors.accent.500');
+  }
+  
+  .filter-btn.active:hover {
+    background-color: theme('colors.accent.600');
+  }
+</style>

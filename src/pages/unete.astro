@@ -1,0 +1,175 @@
+---
+import Layout from '../layouts/Layout.astro';
+import JobApplicationForm from '../components/JobApplicationForm';
+
+interface JobPosition {
+  id: string;
+  title: string;
+  department: string;
+  description: string;
+  requirements: string[];
+}
+
+const positions: JobPosition[] = [
+  {
+    id: "senior-ai-engineer",
+    title: "Senior AI Engineer",
+    department: "Inteligencia Artificial",
+    description: "Buscamos un ingeniero senior especializado en IA para liderar el desarrollo de soluciones innovadoras en machine learning y deep learning.",
+    requirements: [
+      "5+ años de experiencia en desarrollo de soluciones de IA",
+      "Experiencia con PyTorch, TensorFlow y frameworks modernos de ML",
+      "Conocimientos sólidos en deep learning y procesamiento de lenguaje natural",
+      "Experiencia liderando equipos técnicos",
+      "Excelentes habilidades de comunicación"
+    ]
+  },
+  {
+    id: "metaverse-developer",
+    title: "Metaverse Developer",
+    department: "Metaverso",
+    description: "Únete a nuestro equipo de desarrollo de metaverso para crear experiencias inmersivas de próxima generación.",
+    requirements: [
+      "3+ años de experiencia en desarrollo 3D y VR/AR",
+      "Experiencia con Unity o Unreal Engine",
+      "Conocimientos de WebGL y Three.js",
+      "Familiaridad con tecnologías blockchain",
+      "Pasión por tecnologías emergentes"
+    ]
+  }
+];
+---
+
+<Layout title="Únete a Nuestro Equipo - Elite Ware">
+  <!-- Hero Section -->
+  <section class="pt-32 pb-20 bg-gradient-to-b from-dark-900 to-dark-800">
+    <div class="container mx-auto px-4 md:px-8">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="font-display text-4xl md:text-6xl font-bold text-white mb-6">
+          Únete a Nuestro Equipo
+        </h1>
+        <p class="text-lg text-dark-200 mb-10">
+          Forma parte de una empresa líder en innovación tecnológica y ayúdanos a construir el futuro digital.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Culture Section -->
+  <section class="py-20 bg-white dark:bg-dark-800">
+    <div class="container mx-auto px-4 md:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="font-display text-3xl font-bold mb-6">
+            Nuestra Cultura
+          </h2>
+          <div class="space-y-4 text-dark-500 dark:text-dark-200">
+            <p>
+              En Elite Ware, creemos en el poder de la innovación y la colaboración. Fomentamos un ambiente de trabajo donde las ideas fluyen libremente y cada miembro del equipo tiene la oportunidad de crecer y desarrollarse profesionalmente.
+            </p>
+            <p>
+              Valoramos la diversidad de pensamiento y experiencia, y creemos que los mejores resultados surgen cuando personas con diferentes perspectivas trabajan juntas hacia objetivos comunes.
+            </p>
+          </div>
+
+          <div class="mt-8 space-y-4">
+            <h3 class="font-display text-xl font-bold mb-4">
+              Beneficios
+            </h3>
+            <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <li class="flex items-start">
+                <span class="text-accent-500 mr-2">→</span>
+                <span>Horario flexible</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent-500 mr-2">→</span>
+                <span>Trabajo remoto</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent-500 mr-2">→</span>
+                <span>Seguro médico privado</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent-500 mr-2">→</span>
+                <span>Formación continua</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent-500 mr-2">→</span>
+                <span>Plan de carrera</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-accent-500 mr-2">→</span>
+                <span>Eventos de equipo</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="relative rounded-xl overflow-hidden shadow-xl">
+          <img 
+            src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg" 
+            alt="Equipo de Elite Ware" 
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Open Positions -->
+  <section class="py-20 bg-gray-50 dark:bg-dark-700">
+    <div class="container mx-auto px-4 md:px-8">
+      <h2 class="font-display text-3xl font-bold mb-12 text-center">
+        Posiciones Abiertas
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {positions.map(position => (
+          <div class="bg-white dark:bg-dark-800 rounded-xl p-8 shadow-lg">
+            <h3 class="font-display text-2xl font-bold mb-2">
+              {position.title}
+            </h3>
+            <p class="text-accent-500 font-medium mb-4">
+              {position.department}
+            </p>
+            <p class="text-dark-500 dark:text-dark-200 mb-6">
+              {position.description}
+            </p>
+
+            <div class="mb-6">
+              <h4 class="font-semibold mb-3">Requisitos:</h4>
+              <ul class="space-y-2">
+                {position.requirements.map(req => (
+                  <li class="flex items-start text-dark-500 dark:text-dark-300">
+                    <span class="text-accent-500 mr-2">→</span>
+                    <span>{req}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <a 
+              href={`#application-form`}
+              class="inline-flex items-center px-6 py-2 bg-accent-500 hover:bg-accent-600 text-white font-medium rounded-md transition-colors"
+            >
+              Aplicar ahora
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Application Form -->
+  <section id="application-form" class="py-20 bg-white dark:bg-dark-800">
+    <div class="container mx-auto px-4 md:px-8">
+      <div class="max-w-2xl mx-auto">
+        <h2 class="font-display text-3xl font-bold mb-8 text-center">
+          Formulario de Postulación
+        </h2>
+
+        <JobApplicationForm client:load />
+      </div>
+    </div>
+  </section>
+</Layout>
