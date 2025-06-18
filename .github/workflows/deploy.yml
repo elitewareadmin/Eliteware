@@ -15,9 +15,9 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "22.15"  # Puedes usar otra versión compatible con Astro
+          node-version: "22.15" 
 
-            - name: Clean previous builds
+      - name: Clean previous builds
         run: |
           rm -rf node_modules package-lock.json
 
