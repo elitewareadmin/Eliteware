@@ -3,7 +3,7 @@ name: Deploy Astro site to GitHub Pages
 on:
   push:
     branches:
-      - main  # Cambia esto si usas otra rama principal como 'master'
+      - main # Cambia esto si usas otra rama principal como 'master'
 
 jobs:
   build-deploy:
@@ -15,16 +15,11 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "22.15" 
+          node-version: "22.15"
 
       - name: Clean previous builds
         run: |
           rm -rf node_modules package-lock.json
-
-      - name: Install dependencies with force
-        run: |
-          npm config set optional false
-          npm install --force
 
       - name: Build Astro site
         run: npm run build
