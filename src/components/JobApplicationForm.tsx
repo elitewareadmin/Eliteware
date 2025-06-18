@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { supabase } from '../lib/supabase';
+
 
 interface FormData {
   fullName: string;
@@ -39,12 +39,12 @@ const JobApplicationForm: React.FC = () => {
   };
 
   const uploadFile = async (file: File, path: string) => {
-    const { data, error } = await supabase.storage
-      .from('applications')
-      .upload(`${path}/${Date.now()}-${file.name}`, file);
+    // const { data, error } = await supabase.storage
+    //   .from('applications')
+    //   .upload(`${path}/${Date.now()}-${file.name}`, file);
 
-    if (error) throw error;
-    return data.path;
+    // if (error) throw error;
+    return "MOdificador";
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -52,54 +52,54 @@ const JobApplicationForm: React.FC = () => {
     setLoading(true);
     setError(null);
 
-    try {
-      // Validate files
-      if (!formData.cv) throw new Error('El CV es obligatorio');
-      validateFile(formData.cv);
-      if (formData.coverLetter) {
-        validateFile(formData.coverLetter);
-      }
+    // try {
+    //   // Validate files
+    //   if (!formData.cv) throw new Error('El CV es obligatorio');
+    //   validateFile(formData.cv);
+    //   if (formData.coverLetter) {
+    //     validateFile(formData.coverLetter);
+    //   }
 
-      // Upload files
-      const cvUrl = await uploadFile(formData.cv, 'cv');
-      let coverLetterUrl = null;
-      if (formData.coverLetter) {
-        coverLetterUrl = await uploadFile(formData.coverLetter, 'cover-letters');
-      }
+    //   // Upload files
+    //   const cvUrl = await uploadFile(formData.cv, 'cv');
+    //   let coverLetterUrl = null;
+    //   if (formData.coverLetter) {
+    //     coverLetterUrl = await uploadFile(formData.coverLetter, 'cover-letters');
+    //   }
 
-      // Save application
-      const { error: insertError } = await supabase
-        .from('job_applications')
-        .insert({
-          full_name: formData.fullName,
-          email: formData.email,
-          phone: formData.phone,
-          position_id: formData.position,
-          years_experience: parseInt(formData.yearsExperience),
-          cv_url: cvUrl,
-          cover_letter_url: coverLetterUrl,
-          privacy_accepted: formData.privacyAccepted
-        });
+    //   // Save application
+    //   const { error: insertError } = await supabase
+    //     .from('job_applications')
+    //     .insert({
+    //       full_name: formData.fullName,
+    //       email: formData.email,
+    //       phone: formData.phone,
+    //       position_id: formData.position,
+    //       years_experience: parseInt(formData.yearsExperience),
+    //       cv_url: cvUrl,
+    //       cover_letter_url: coverLetterUrl,
+    //       privacy_accepted: formData.privacyAccepted
+    //     });
 
-      if (insertError) throw insertError;
+    //   if (insertError) throw insertError;
 
-      setSuccess(true);
-      formRef.current?.reset();
-      setFormData({
-        fullName: '',
-        email: '',
-        phone: '',
-        position: '',
-        yearsExperience: '',
-        cv: null,
-        coverLetter: null,
-        privacyAccepted: false
-      });
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Ha ocurrido un error');
-    } finally {
-      setLoading(false);
-    }
+    //   setSuccess(true);
+    //   formRef.current?.reset();
+    //   setFormData({
+    //     fullName: '',
+    //     email: '',
+    //     phone: '',
+    //     position: '',
+    //     yearsExperience: '',
+    //     cv: null,
+    //     coverLetter: null,
+    //     privacyAccepted: false
+    //   });
+    // } catch (err) {
+    //   setError(err instanceof Error ? err.message : 'Ha ocurrido un error');
+    // } finally {
+    //   setLoading(false);
+    // }
   };
 
   return (
