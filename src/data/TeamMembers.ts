@@ -4,7 +4,7 @@ export const TeamMembers = [
     position: "CEO y Fundador",
     bio: "CEO de EliteWare. Visionario en IA, XR y metaverso. Fundador de LiveXR, RUBI y JXFUN.",
     image:
-      "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "/Jose.jpg",
     social: {
       linkedin: "#",
       twitter: "#",
@@ -12,11 +12,11 @@ export const TeamMembers = [
     },
   },
   {
-    name: "Aida Manzanero Calvo",
+    name: "Aida Manzanero ",
     position: "CCO",
     bio: "Cofundadora de JXFUN. Creativa XR y modelo digital. Lidera branding y experiencias inmersivas.",
     image:
-      "https://images.pexels.com/photos/2726111/pexels-photo-2726111.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "/AIDA.jpg",
     social: {
       linkedin: "#",
       twitter: "#",
