@@ -28,7 +28,7 @@ export const TeamMembers = [
     position: "Directora de Innovación",
     bio: " Ingeniera de Sistemas. Desarrollador de Juegos y VR. Innovadora en Tecnologías Inmersivas. ",
     image:
-      "https://images.pexels.com/photos/1898555/pexels-photo-1898555.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "/camila.jpg",
     social: {
       linkedin: "#",
       twitter: "#",
