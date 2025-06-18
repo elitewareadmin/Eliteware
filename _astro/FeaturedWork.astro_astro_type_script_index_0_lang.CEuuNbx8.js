@@ -1,0 +1,1 @@
+import{g as r}from"./index.CH_iu5NA.js";import{S as e}from"./ScrollTrigger.C4gmGO9R.js";document.addEventListener("astro:page-load",()=>{r.registerPlugin(e),document.querySelectorAll(".project-card").forEach((o,t)=>{r.from(o,{y:30,opacity:0,duration:.8,delay:t*.2,scrollTrigger:{trigger:o,start:"top bottom-=100",end:"bottom center",toggleActions:"play none none none"}})})});
