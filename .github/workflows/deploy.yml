@@ -1,0 +1,30 @@
+name: Deploy Astro site to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Cambia esto si usas otra rama principal como 'master'
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"  # Puedes usar otra versión compatible con Astro
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Astro site
+        run: npm run build  # Asegúrate de tener "build": "astro build" en package.json
+
+      - name: Deploy to GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: dist     
