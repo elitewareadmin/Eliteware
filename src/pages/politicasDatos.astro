@@ -1,0 +1,158 @@
+---
+import Layout from "../layouts/Layout.astro";
+const fechaActual: Date = new Date();
+const year: number = fechaActual.getFullYear();
+const mes: number = fechaActual.getMonth() + 1;
+const dia: number = fechaActual.getDate();
+
+const fechaFormateada: string = `${year}-${mes}-${dia}`;
+---
+
+<title>Política de Privacidad - Elite Ware</title>
+<meta charset="UTF-8" />
+
+<body>
+    <style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 2rem;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  h1,
+  h2 {
+    color: #0056b3;
+  }
+  p {
+    margin-bottom: 1rem;
+  }
+  ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  a {
+    color: #0056b3;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  .container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  footer {
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 0.9rem;
+    color: #666;
+  }
+</style>
+
+  <div class="container">
+    <h1>Política de Privacidad de Elite Ware</h1>
+    <p><strong>Última actualización:</strong> {fechaFormateada}</p>
+
+    <p>
+      En <strong>Elite Ware</strong> nos comprometemos a proteger la privacidad de
+      los usuarios que visitan nuestra landing page y utilizan nuestros formularios.
+      Esta política explica cómo recopilamos, utilizamos y protegemos los datos personales
+      que nos proporcionas.
+    </p>
+
+    <h2>1. ¿Qué datos recopilamos?</h2>
+    <p>Dependiendo del formulario que completes, podemos recopilar:</p>
+    <ul>
+      <li>
+        <strong>Formulario de información de empresa y servicios:</strong>
+        <ul>
+          <li>Nombre completo</li>
+          <li>Correo electrónico</li>
+          <li>Teléfono (si se solicita)</li>
+          <li>Empresa (si se solicita)</li>
+          <li>Mensaje o consulta</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Formulario para enviar síntesis curricular:</strong>
+        <ul>
+          <li>Nombre completo</li>
+          <li>Correo electrónico</li>
+          <li>Teléfono (si se solicita)</li>
+          <li>Documento adjunto (CV)</li>
+          <li>Mensaje adicional</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h2>2. ¿Cómo usamos tus datos?</h2>
+    <p>
+      Usamos los datos personales proporcionados <strong>exclusivamente</strong>
+      para:
+    </p>
+    <ul>
+      <li>
+        Comunicarnos contigo por correo electrónico en respuesta a tus
+        solicitudes de información sobre nuestra empresa y servicios.
+      </li>
+      <li>
+        Enviarte información relevante sobre nuestros productos y servicios,
+        solo si así lo solicitas.
+      </li>
+      <li>
+        En el caso de postulaciones laborales, para ponernos en contacto contigo
+        sobre tu candidatura y proceso de selección.
+      </li>
+    </ul>
+    <p>
+      <strong
+        >No utilizamos tus datos para fines distintos a los aquí descritos.</strong>
+    </p>
+
+    <h2>3. ¿Compartimos tus datos?</h2>
+    <p>
+      Tus datos no serán compartidos con terceros, salvo que sea necesario para
+      cumplir con obligaciones legales o requerimientos de autoridades
+      competentes.
+    </p>
+
+    <h2>4. Seguridad de la información</h2>
+    <p>
+      Implementamos medidas de seguridad administrativas, técnicas y físicas
+      para proteger tus datos personales contra acceso, uso o divulgación no
+      autorizados.
+    </p>
+
+    <h2>5. Derechos de los usuarios</h2>
+    <p>Tienes derecho a:</p>
+    <ul>
+      <li>Acceder, corregir o eliminar tus datos personales.</li>
+      <li>Solicitar información sobre el tratamiento de tus datos.</li>
+      <li>Retirar tu consentimiento en cualquier momento.</li>
+    </ul>
+    <p>
+      Para ejercer estos derechos, puedes contactarnos en: <a
+        href="mailto:correo@eliteware.com">correo@eliteware.com</a>
+    </p>
+
+    <h2>6. Cambios en la política</h2>
+    <p>
+      Podemos actualizar esta política de privacidad ocasionalmente. Cualquier
+      cambio será publicado en esta página con la fecha de actualización.
+    </p>
+
+    <p>
+      <strong>Elite Ware</strong> agradece tu confianza. Si tienes dudas sobre esta
+      política o el tratamiento de tus datos, contáctanos.
+    </p>
+
+    <footer>
+      <p>© Elite Ware - Todos los derechos reservados.</p>
+    </footer>
+  </div>
+</body>

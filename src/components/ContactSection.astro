@@ -1,3 +1,7 @@
+---
+
+---
+
 <section class="pt-32 pb-20 bg-gradient-to-b from-dark-900 to-dark-800">
   <div class="container mx-auto px-4 md:px-8">
     <div class="container mx-auto px-4 md:px-8">
@@ -63,7 +67,26 @@
             class="w-full px-4 py-3 border border-gray-300 dark:border-dark-500 rounded-md bg-white dark:bg-dark-600 text-dark-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
           ></textarea>
         </div>
-
+        <div class="mb-4">
+          <label class="inline-flex items-center">
+            <input
+              type="checkbox"
+              name="accept_terms"
+              required
+              class="form-checkbox text-primary-500"
+            />
+            <span class="ml-2">
+              Acepto los
+              <a
+                href="/politicasDatos"
+                target="_blank"
+                class="text-primary-500 underline"
+              >
+                Términos y Condiciones de Elite Ware
+              </a>
+            </span>
+          </label>
+        </div>
         <button
           type="submit"
           class="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-6 rounded-md transition-colors"
@@ -155,3 +178,94 @@
     </div>
   </div>
 </section>
+<script type="module">
+  async function save(entity) {
+    var headers = {
+      accept: "application/json",
+      "Content-Type": "application/json",
+    };
+    try {
+      const response = await fetch(`http://3.131.37.190:2007/rqstService`, {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(entity),
+      });
+      if (response.status == 201 ) {
+        console.log("recibei")
+        const data = await response.json();
+
+        return true;
+      } else if (response.status == 404) {
+        alert("No se ha podido conectar con el servidor ");
+        return null;
+      } else if (response.status == 400) {
+        alert(response.statusText);
+        return null;
+      } else if (response.status == 422) {
+        alert("Estas enviando un dato errado ");
+        return null;
+      }
+      if (response.status == 401) {
+        localStorage.clear();
+        window.location.href = "/";
+        return null;
+      } else {
+        throw new Error("Error en la solicitud");
+      }
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+  async function sendData(entity) {
+    try {
+      const data = await save(entity);
+      if (data != false) {
+        console.log(true);
+        alert("su solicitud a sido enviada exitosamente ");
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector("form");
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault(); // Evita recargar la página
+
+      // Validar checkbox de términos
+      const acceptTerms = form.querySelector('input[name="accept_terms"]');
+      if (!acceptTerms.checked) {
+        alert("Debes aceptar los Términos y Condiciones.");
+        return;
+      }
+
+      // Obtener valores del formulario
+      const entity = {
+        id: 0,
+        name_client: form.name.value.trim(),
+        email: form.email.value.trim(),
+        message: form.message.value.trim(),
+        date: "ddd",
+        // Agrega aquí más campos si tu entidad los requiere
+      };
+
+      // Validaciones básicas
+      // if (!entity.name || !entity.email || !entity.message) {
+      //   alert("Por favor, completa todos los campos obligatorios.");
+      //   return;
+      // }
+
+      try {
+        await sendData(entity);
+      } catch (error) {
+        console.error(error);
+        alert("Ocurrió un error al enviar la solicitud.");
+      }
+    });
+  });
+</script>
